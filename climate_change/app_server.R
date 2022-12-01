@@ -14,13 +14,13 @@ working_data <- co2_data %>%
   filter(year >= 1900 & year <= 2018)
 
 graph_data <- working_data %>%
-  select(country, year, co2_per_gdp) %>%
-  mutate(co2_per_gdp = coalesce(co2_per_gdp, 0))
+  select(country, year, co2_per_gdp)
 
 # three relevant calculations 
 
 # This calculates the country with the largest CO2 emissions
 max_co2_emissions <- co2_data %>%
+  filter(iso_code != "") %>%
   filter(co2 == max(co2, na.rm = TRUE)) %>%
   pull(country)
 
@@ -81,7 +81,11 @@ server <- function(input, output){
   output$scatter <- renderPlotly({
     ggplot() + geom_point(data = graph_data %>% filter(country %in% req(input$countries)),
                           aes(x = year, y = co2_per_gdp, color = country)) + 
-      xlim(input$years[1], input$years[2]) 
+      xlim(input$years[1], input$years[2]) +
+      labs(x = "Years", y = "CO2 per GDP (million tonnes 
+           per 2011-international-dollar",
+           title = paste("Comparison of CO2 emissions in", length(input$countries), "country(/-ies) 
+                         from", input$years[1], "to", input$years[2]))
   })
 }
 

@@ -5,9 +5,9 @@ account: changcynthia
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 7752209
-bundleId: 6565685
+bundleId: 6575419
 url: https://changcynthia.shinyapps.io/assignment5/
-when: 1669694041.21674
-lastSyncTime: 1669694041.21674
+when: 1669863843.3083
+lastSyncTime: 1669863843.3083
 asMultiple: FALSE
 asStatic: FALSE
